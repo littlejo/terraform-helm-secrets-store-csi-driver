@@ -1,7 +1,7 @@
 variable "name" {
   description = "Name of helm release"
   type        = string
-  default     = "secrets-store-csi-driver"
+  default     = "csi-secrets-store"
 }
 
 variable "repository" {
@@ -19,13 +19,13 @@ variable "chart" {
 variable "namespace" {
   description = "namespace of helm release"
   type        = string
-  default     = "secrets-store-csi-driver"
+  default     = "kube-system"
 }
 
 variable "create_namespace" {
   description = "Create namespace ?"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "release_version" {

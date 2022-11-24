@@ -4,7 +4,13 @@ locals {
   registrar_set_values = module.registrar_image.set_values
   liveness_set_values  = module.liveness_image.set_values
 
-  set_values = concat(var.set_values, local.main_set_values, local.crd_set_values, local.liveness_set_values)
+  set_values = concat(
+    var.set_values,
+    local.main_set_values,
+    local.crd_set_values,
+    local.registrar_set_values,
+    local.liveness_set_values,
+  )
 
   default_helm_config = {
     name             = var.name

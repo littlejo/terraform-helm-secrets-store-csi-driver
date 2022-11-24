@@ -42,6 +42,12 @@ variable "images" {
     registrar = optional(string)
     liveness  = optional(string)
   })
+  default = {
+    main      = null
+    crd       = null
+    registrar = null
+    liveness  = null
+  }
 }
 
 variable "values" {

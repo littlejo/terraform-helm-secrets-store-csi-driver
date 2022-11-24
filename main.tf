@@ -1,9 +1,10 @@
 locals {
-  main_image      = try(regex("^(?:(?P<url>[^/]+))?(?:/(?P<image>[^:]*))??(?::(?P<tag>[^:]*))", var.images.main), {})
-  main_pre_value  = "image"
-  main_set_values = local.main_image != {} ? [{ name = "${local.main_pre_value}.registry", value = local.main_image.url }, { name = "${local.main_pre_value}.repository", value = local.main_image.image }, { name = "${local.main_pre_value}.tag", value = local.main_image.tag }] : []
+  main_set_values      = module.main_image.set_values
+  crd_set_values       = module.crd_image.set_values
+  registrar_set_values = module.registrar_image.set_values
+  liveness_set_values  = module.liveness_image.set_values
 
-  set_values = concat(var.set_values, local.main_set_values)
+  set_values = concat(var.set_values, local.main_set_values, local.crd_set_values, local.liveness_set_values)
 
   default_helm_config = {
     name             = var.name
@@ -24,3 +25,30 @@ module "helm" {
   set_sensitive_values = var.set_sensitive_values
 }
 
+module "main_image" {
+  source     = "./images_set_values"
+  repo_regex = var.repo_regex
+  repo_url   = var.images.main
+  pre_value  = "${var.os}.image"
+}
+
+module "crd_image" {
+  source     = "./images_set_values"
+  repo_regex = var.repo_regex
+  repo_url   = var.images.crd
+  pre_value  = "${var.os}.crds.image"
+}
+
+module "registrar_image" {
+  source     = "./images_set_values"
+  repo_regex = var.repo_regex
+  repo_url   = var.images.registrar
+  pre_value  = "${var.os}.registrarImage"
+}
+
+module "liveness_image" {
+  source     = "./images_set_values"
+  repo_regex = var.repo_regex
+  repo_url   = var.images.liveness
+  pre_value  = "${var.os}.livenessProbeImage"
+}

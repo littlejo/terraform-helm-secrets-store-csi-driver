@@ -36,8 +36,12 @@ variable "release_version" {
 
 variable "images" {
   description = "Map of images"
-  type        = map(string)
-  default     = {}
+  type = object({
+    main      = optional(string)
+    crd       = optional(string)
+    registrar = optional(string)
+    liveness  = optional(string)
+  })
 }
 
 variable "values" {
@@ -62,4 +66,16 @@ variable "helm_config" {
   description = "Map of helm config"
   type        = map(any)
   default     = {}
+}
+
+variable "os" {
+  description = "node installation"
+  type        = string
+  default     = "linux"
+}
+
+variable "repo_regex" {
+  description = "Repo regex to identifier different part of the string"
+  type        = string
+  default     = "^(?:(?P<url>[^/]+))?(?:/(?P<image>[^:]*))??(?::(?P<tag>[^:]*))"
 }

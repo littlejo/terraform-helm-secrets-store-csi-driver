@@ -32,28 +32,28 @@ module "helm" {
 }
 
 module "main_image" {
-  source     = "./images_set_values"
+  source     = "github.com/littlejo/terraform-helm-images-set-values"
   repo_regex = var.repo_regex
   repo_url   = var.images.main
   pre_value  = "${var.os}.image"
 }
 
 module "crd_image" {
-  source     = "./images_set_values"
+  source     = "github.com/littlejo/terraform-helm-images-set-values"
   repo_regex = var.repo_regex
   repo_url   = var.images.crd
   pre_value  = "${var.os}.crds.image"
 }
 
 module "registrar_image" {
-  source     = "./images_set_values"
+  source     = "github.com/littlejo/terraform-helm-images-set-values"
   repo_regex = var.repo_regex
   repo_url   = var.images.registrar
   pre_value  = "${var.os}.registrarImage"
 }
 
 module "liveness_image" {
-  source     = "./images_set_values"
+  source     = "github.com/littlejo/terraform-helm-images-set-values"
   repo_regex = var.repo_regex
   repo_url   = var.images.liveness
   pre_value  = "${var.os}.livenessProbeImage"

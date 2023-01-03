@@ -15,7 +15,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_crd_image"></a> [crd\_image](#module\_crd\_image) | github.com/littlejo/terraform-helm-images-set-values | v0.1 |
-| <a name="module_helm"></a> [helm](#module\_helm) | github.com/terraform-helm/terraform-helm | 0.1 |
+| <a name="module_helm"></a> [helm](#module\_helm) | github.com/terraform-helm/terraform-helm | v0.2 |
 | <a name="module_liveness_image"></a> [liveness\_image](#module\_liveness\_image) | github.com/littlejo/terraform-helm-images-set-values | v0.1 |
 | <a name="module_main_image"></a> [main\_image](#module\_main\_image) | github.com/littlejo/terraform-helm-images-set-values | v0.1 |
 | <a name="module_registrar_image"></a> [registrar\_image](#module\_registrar\_image) | github.com/littlejo/terraform-helm-images-set-values | v0.1 |
